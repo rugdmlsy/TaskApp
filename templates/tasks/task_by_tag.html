@@ -1,0 +1,30 @@
+<!-- templates/tasks/task_by_tag.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ tag.name }} - 任务列表</title>
+</head>
+<body>
+    <h1>标签：{{ tag.name }}</h1>
+
+    <h2>任务列表</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a> - 
+                Due: {{ task.due_date }} - 
+                {% if task.completed %}
+                    Completed
+                {% else %}
+                    Not Completed
+                {% endif %}
+            </li>
+        {% empty %}
+            <p>没有任务</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'task_list' %}">返回任务列表</a>
+</body>
+</html>

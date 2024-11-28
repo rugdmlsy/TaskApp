@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+</head>
+<body>
+    <h1>任务列表</h1>
+
+    <h2>标签</h2>
+    <ul>
+        {% for tag in tags %}
+            <li><a href="{% url 'task_by_tag' tag.id %}">{{ tag.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>所有任务</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a> - 
+                Due: {{ task.due_date }} - 
+                {% if task.completed %}
+                    Completed
+                {% else %}
+                    Not Completed
+                {% endif %}
+            </li>
+        {% empty %}
+            <p>没有任务</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }}</title>
+</head>
+<body>
+    <h1>{{ task.title }}</h1>
+    <p>{{ task.description }}</p>
+    <p>Due: {{ task.due_date }}</p>
+    <p>Completed: {% if task.completed %} Yes {% else %} No {% endif %}</p>
+    <a href="{% url 'delete_task' task.pk %}">删除任务</a>
+    <a href="{% url 'task_list' %}">返回任务列表</a>
+</body>
+</html>
